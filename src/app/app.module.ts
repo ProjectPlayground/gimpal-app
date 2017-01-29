@@ -11,6 +11,8 @@ import { AccountPage } from '../pages/account/account';
 import { MessagesPage } from '../pages/messages/messages';
 import { PostsPage } from '../pages/posts/posts';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { TabsPage } from '../pages/tabs/tabs';
 
 // import af2 module
@@ -39,6 +41,8 @@ export const firebaseConfig = {
     PostsPage,
     HomePage,
     LoginPage,
+    SignupPage,
+    ForgotPasswordPage,
     TabsPage
   ],
   imports: [
@@ -55,6 +59,8 @@ export const firebaseConfig = {
     PostsPage,
     HomePage,
     LoginPage,
+    SignupPage,
+    ForgotPasswordPage,
     TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, SwitchData, AuthProvider, DataProvider]

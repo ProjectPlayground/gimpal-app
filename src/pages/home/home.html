@@ -1,19 +1,10 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar primary>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
 
-  <ion-title [hidden]="!switchStatus">
-    Your switch is on!
-  </ion-title>
-  <ion-title [hidden]="switchStatus">
-    Your switch is off!
-  </ion-title>
-
-  <button ion-button full (click)="postStatus(true)">On</button>
-  <button ion-button full color="danger" (click)="postStatus(false)">Off</button>
+<ion-content padding class="home">
 
 </ion-content>

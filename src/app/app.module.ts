@@ -1,20 +1,25 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { MyApp } from './app.component';
+
+import { FormsModule } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 // import pages
 import { HomePage } from '../pages/home/home';
 import { AccountPage } from '../pages/account/account';
 import { MessagesPage } from '../pages/messages/messages';
 import { PostsPage } from '../pages/posts/posts';
+import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
-
-// import providers
-import { SwitchData } from '../providers/switch-data';
 
 // import af2 module
 import { AngularFireModule } from 'angularfire2';
+
+// import providers
+import { SwitchData } from '../providers/switch-data';
+import { AuthProvider } from '../providers/auth';
+import { DataProvider } from '../providers/data';
 
 // AF2 Firebase
 export const firebaseConfig = {
@@ -33,11 +38,13 @@ export const firebaseConfig = {
     MessagesPage,
     PostsPage,
     HomePage,
+    LoginPage,
     TabsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,8 +54,9 @@ export const firebaseConfig = {
     MessagesPage,
     PostsPage,
     HomePage,
+    LoginPage,
     TabsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, SwitchData]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, SwitchData, AuthProvider, DataProvider]
 })
 export class AppModule {}

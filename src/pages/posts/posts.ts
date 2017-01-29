@@ -12,6 +12,7 @@ import { PostCreatePage } from '../post-create/post-create';
 export class PostsPage {
 
   posts: FirebaseListObservable<any>;
+  alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
   constructor(
     public events: Events,

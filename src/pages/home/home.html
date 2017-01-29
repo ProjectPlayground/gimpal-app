@@ -16,34 +16,19 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content [ngSwitch]="segment">
   <!-- *************** LIST ******************* -->
   <ion-list *ngIf="segment === 'list'" no-lines>
-    <div *ngFor="let post of posts | async">
+    <div *ngFor="let post of posts | async; let i=index">
       <ion-item-divider light class="capitalize">
         <ion-badge item-left>{{alphabet[i]}}</ion-badge>
       </ion-item-divider>
-      <ion-item-sliding>
-        <button ion-item detail-none class="capitalize">
-          <h3>
-          </h3>
-          <h4>
-          </h4>
-          <h6>
-          </h6>
-        </button>
-        <ion-item-options side="right">
-          <button primary>
-            <ion-icon name="text"></ion-icon>
-            Maps
-          </button>
-          <button secondary>
-            <ion-icon name="call"></ion-icon>
-            Contact
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
+      <ion-card>
+        <img src="img/card-saopaolo.png"/>
+        <div class="card-title">{{post.title}}</div>
+        <div class="card-subtitle">Price: <b>{{post.price}}</b></div>
+        <div class="card-subtitle">{{post.description}}</div>
+      </ion-card>
     </div>
   </ion-list>
   <!-- *************** MAP ******************* -->

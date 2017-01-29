@@ -11,6 +11,7 @@ import { AccountPage } from '../pages/account/account';
 import { MessagesPage } from '../pages/messages/messages';
 import { PostsPage } from '../pages/posts/posts';
 import { PostCreatePage } from '../pages/post-create/post-create';
+import { PostFiltersPage } from '../pages/post-filters/post-filters';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
@@ -41,6 +42,7 @@ export const firebaseConfig = {
     MessagesPage,
     PostsPage,
     PostCreatePage,
+    PostFiltersPage,
     HomePage,
     LoginPage,
     SignupPage,
@@ -60,6 +62,7 @@ export const firebaseConfig = {
     MessagesPage,
     PostsPage,
     PostCreatePage,
+    PostFiltersPage,
     HomePage,
     LoginPage,
     SignupPage,

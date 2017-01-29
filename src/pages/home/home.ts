@@ -35,6 +35,7 @@ export class HomePage {
   };
 
   posts: any;
+  ref: any;
 
   constructor (
     public app: App,
@@ -46,6 +47,7 @@ export class HomePage {
     public af: AngularFire
   ) {
     this.posts = af.database.list('/posts');
+    this.ref = firebase.database().ref('/posts');
   }
 
   ngAfterViewChecked(){
@@ -78,13 +80,16 @@ export class HomePage {
   }
 
   addWaypoints() {
-    firebase.database().ref('/posts').once('value').then(data => {
-      console.log(data);
-    })
-    // for (var i = 0; i < this.currentShift.waypoints.length; i++) {
-    //   let waypoint = this.currentShift.waypoints[i];
-    //   this.addMarker({ lat: waypoint.location.latitude, lng: waypoint.location.longitude })
-    // }
+    this.ref.on("value", (data) => {
+      var all_posts = data.val();
+      for (var a_post in all_posts) {
+        var single_post = all_posts[a_post];
+        console.log(single_post);
+        this.addMarker({ lat: single_post.location.latitude, lng: single_post.location.longitude })
+      }
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
   }
 
   addMarker(location) {

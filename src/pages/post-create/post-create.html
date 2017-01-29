@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="viewCtrl.dismiss()">Cancel</button>
+    </ion-buttons>
+    <ion-title>
+      Create Post
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="createPost()" [disabled]="creating">Create</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+    <ion-item-divider light>Equipment Info</ion-item-divider>
+    <ion-item>
+      <ion-label>Title:</ion-label>
+      <ion-input type="text" [(ngModel)]="post.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description:</ion-label>
+      <ion-input type="text" [(ngModel)]="post.description"></ion-input>
+    </ion-item>
+    <ion-item-divider light>Address</ion-item-divider>
+    <ion-item>
+      <ion-label>Address:</ion-label>
+      <ion-input type="text" [(ngModel)]="post.address.address1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>City:</ion-label>
+      <ion-select [(ngModel)]="post.address.city">
+        <ion-option value="Edmonton">Edmonton</ion-option>
+        <ion-option value="Calgary">Calgary</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider light>
+      Location
+      <button ion-button item-right (click)="getLocation()">Get location</button>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>Latitude:</ion-label>
+      <ion-input type="number" [(ngModel)]="post.location.latitude"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Longitude:</ion-label>
+      <ion-input type="number" [(ngModel)]="post.location.longitude"></ion-input>
+    </ion-item>
+  </ion-item-group>
+</ion-content>

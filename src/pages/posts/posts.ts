@@ -1,22 +1,37 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Events, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
-/*
-  Generated class for the Posts page.
+import { PostCreatePage } from '../post-create/post-create';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-posts',
   templateUrl: 'posts.html'
 })
 export class PostsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  posts: FirebaseListObservable<any>;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PostsPage');
+  constructor(
+    public events: Events,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public auth: AuthProvider,
+    public modalCtrl: ModalController,
+    public af: AngularFire,
+    public alertCtrl: AlertController
+  ) {
+    this.posts = af.database.list('/posts');
+  }
+
+  addPost(){
+    let modal = this.modalCtrl.create(PostCreatePage);
+    modal.present();
+    modal.onDidDismiss((data: any[]) => {
+      this.posts.push(data);
+      console.log(data);
+    });
   }
 
 }

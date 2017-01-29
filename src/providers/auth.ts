@@ -78,6 +78,10 @@ export class AuthProvider {
     });
   }
 
+  logoutUser(): any {
+    return this.af.auth.logout();
+  }
+
   sendPasswordResetEmail(email) {
     return Observable.create(observer => {
       firebase.auth().sendPasswordResetEmail(email).then(function() {

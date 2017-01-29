@@ -1,4 +1,4 @@
-import { NavController, LoadingController } from 'ionic-angular';
+import { Events, NavController, LoadingController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { SignupPage } from '../signup/signup';
@@ -14,6 +14,7 @@ export class LoginPage {
   form: any;
 
   constructor(
+    public events: Events,
     private navCtrl: NavController,
     private auth: AuthProvider,
     private loadingCtrl: LoadingController
@@ -41,6 +42,7 @@ export class LoginPage {
     this.auth.loginWithEmail(this.form).subscribe(data => {
       setTimeout(() => {
         loading.dismiss();
+        this.events.publish('user:login');
         // The auth subscribe method inside the app.ts will handle the page switch to home
       }, 1000);
     }, err => {

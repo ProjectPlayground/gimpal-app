@@ -1,22 +1,39 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Events, NavController, NavParams } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Camera } from 'ionic-native';
+import { LoginPage } from '../login/login';
 
-/*
-  Generated class for the Account page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-account',
   templateUrl: 'account.html'
 })
 export class AccountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  public userProfile: any;
+
+  constructor (
+    public events: Events,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public auth: AuthProvider
+  ) {
+    this.auth.getUserData().on('value', (data) => {
+      console.log(data);
+    })
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountPage');
+    console.log(firebase.auth().currentUser.providerData[0]);
   }
+
+  logout(){
+  this.auth.logoutUser().then(() => {
+      this.navCtrl.setRoot(LoginPage);
+    });
+  }
+
+  //this.events.publish('user:logout');
 
 }

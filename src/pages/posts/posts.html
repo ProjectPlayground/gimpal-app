@@ -11,14 +11,6 @@
 
 <ion-content>
   <ion-card *ngFor="let post of posts | async">
-    <ion-item>
-      <ion-avatar item-left>
-        <img src="img/marty-avatar.png">
-      </ion-avatar>
-      <h2>{{post.title}}</h2>
-      <p>November 5, 1955</p>
-    </ion-item>
-    <img src="img/advance-card-bttf.png">
     <ion-card-content>
       <p>{{post.description}}</p>
     </ion-card-content>

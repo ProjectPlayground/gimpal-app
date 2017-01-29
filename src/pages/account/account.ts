@@ -4,6 +4,7 @@ import { AuthProvider } from '../../providers/auth';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Camera } from 'ionic-native';
 import { LoginPage } from '../login/login';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-account',
@@ -19,13 +20,8 @@ export class AccountPage {
     public navParams: NavParams,
     public auth: AuthProvider
   ) {
-    this.auth.getUserData().on('value', (data) => {
-      console.log(data);
-    })
-  }
-
-  ionViewDidLoad() {
-    console.log(firebase.auth().currentUser.providerData[0]);
+    this.userProfile = firebase.auth().currentUser.providerData[0]
+    console.log(this.userProfile);
   }
 
   logout(){
@@ -33,7 +29,4 @@ export class AccountPage {
       this.navCtrl.setRoot(LoginPage);
     });
   }
-
-  //this.events.publish('user:logout');
-
 }

@@ -1,6 +1,13 @@
 <ion-header>
-  <ion-navbar primary>
-    <ion-title>Home</ion-title>
+  <ion-navbar no-border-bottom>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="list" (ionSelect)="mapLoaded = false">
+        List
+      </ion-segment-button>
+      <ion-segment-button value="map">
+        Map
+      </ion-segment-button>
+    </ion-segment>
     <ion-buttons end>
       <button ion-button icon-only (click)="filterChange()">
         <ion-icon name="list"></ion-icon>
@@ -10,6 +17,35 @@
 </ion-header>
 
 
-<ion-content padding class="home">
-
+<ion-content [ngSwitch]="segment">
+  <!-- *************** LIST ******************* -->
+  <ion-list *ngIf="segment === 'list'" no-lines>
+    <div *ngFor="let post of posts | async">
+      <ion-item-divider light class="capitalize">
+        <ion-badge item-left>{{alphabet[i]}}</ion-badge>
+      </ion-item-divider>
+      <ion-item-sliding>
+        <button ion-item detail-none class="capitalize">
+          <h3>
+          </h3>
+          <h4>
+          </h4>
+          <h6>
+          </h6>
+        </button>
+        <ion-item-options side="right">
+          <button primary>
+            <ion-icon name="text"></ion-icon>
+            Maps
+          </button>
+          <button secondary>
+            <ion-icon name="call"></ion-icon>
+            Contact
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+  </ion-list>
+  <!-- *************** MAP ******************* -->
+  <div #map id="map" *ngIf="segment === 'map'"></div>
 </ion-content>

@@ -7,14 +7,6 @@
 </ion-header>
 
 <ion-content class="login-email">
-  <ion-row>
-    <div padding class="forgot-password-txt" (click)="openForgotPasswordPage()">
-      Forgot Password
-    </div>
-    <div padding class="sign-up-txt" (click)="openSignUpPage()">
-      Sign Up
-    </div>
-  </ion-row>
 
   <form (ngSubmit)="login()" #loginForm="ngForm">
     <ion-list>
@@ -35,4 +27,14 @@
       <p>{{error}}</p>
     </div>
   </form>
+
+  <ion-row>
+    <button ion-button block clear (click)="openSignUpPage()">
+      Create a new account
+    </button>
+    <button ion-button block clear (click)="openForgotPasswordPage()">
+      I forgot my password
+    </button>
+  </ion-row>
+
 </ion-content>

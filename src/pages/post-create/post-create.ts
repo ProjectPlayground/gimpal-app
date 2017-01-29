@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Camera } from 'ionic-native';
+import firebase from 'firebase';
 
 @Component({
   selector: 'page-post-create',
@@ -13,7 +15,7 @@ export class PostCreatePage {
     title: undefined,
     description: undefined,
     price: undefined,
-    duration: undefined,
+    dateAvailable: undefined,
     location: {
       latitude: undefined,
       longitude: undefined
@@ -21,7 +23,8 @@ export class PostCreatePage {
     address: {
       address1: undefined,
       city: 'Edmonton'
-    }
+    },
+    picture: null
   };
 
   constructor(
@@ -51,6 +54,23 @@ export class PostCreatePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  takePicture() {
+    Camera.getPicture({
+      quality : 95,
+      destinationType : Camera.DestinationType.DATA_URL,
+      sourceType : Camera.PictureSourceType.CAMERA,
+      allowEdit : true,
+      encodingType: Camera.EncodingType.PNG,
+      targetWidth: 500,
+      targetHeight: 500,
+      saveToPhotoAlbum: true
+    }).then(imageData => {
+      this.post.picture = imageData;
+    }, error => {
+      console.log("ERROR -> " + JSON.stringify(error));
+    });
   }
 
 }

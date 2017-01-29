@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../providers/auth';
 
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   templateUrl: 'signup.html',
@@ -38,7 +38,7 @@ export class SignupPage {
       this.auth.loginWithEmail(registerData).subscribe(loginData => {
         setTimeout(() => {
           loading.dismiss();
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.setRoot(TabsPage);
         }, 1000);
       }, loginError => {
         setTimeout(() => {

@@ -23,6 +23,15 @@
       <ion-label>Description:</ion-label>
       <ion-input type="text" [(ngModel)]="post.description"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Price (CAD $):</ion-label>
+      <ion-input type="text" [(ngModel)]="post.price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="dob-label">Date Available</ion-label>
+      <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY"
+        [(ngModel)]="post.dateAvailable"></ion-datetime>
+    </ion-item>
     <ion-item-divider light>Address</ion-item-divider>
     <ion-item>
       <ion-label>Address:</ion-label>

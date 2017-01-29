@@ -10,10 +10,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let post of posts | async; let i=index">
-    <img src="img/card-saopaolo.png"/>
+  <ion-card *ngFor="let post of posts | async">
+    <img src="{{post.picture}}"/>
     <div class="card-title">{{post.title}}</div>
     <div class="card-subtitle">Price: <b>{{post.price}}</b></div>
-    <div class="card-subtitle">{{post.description}}</div>
+    <div class="card-subtitle">Address: {{post.address.address1}}, {{post.address.city}}</div>
+    <div class="card-subtitle">Description: {{post.description}}</div>
   </ion-card>
 </ion-content>

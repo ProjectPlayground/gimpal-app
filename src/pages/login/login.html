@@ -15,7 +15,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-input type="password" placeholder="Senha" [(ngModel)]="form.password" name="password"></ion-input>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="form.password" name="password"></ion-input>
       </ion-item>
     </ion-list>
 
@@ -27,14 +27,12 @@
       <p>{{error}}</p>
     </div>
   </form>
-
-  <ion-row>
-    <button ion-button block clear (click)="openSignUpPage()">
-      Create a new account
-    </button>
-    <button ion-button block clear (click)="openForgotPasswordPage()">
-      I forgot my password
-    </button>
-  </ion-row>
+  
+  <button ion-button block clear (click)="openSignUpPage()">
+    Create a new account
+  </button>
+  <button ion-button block clear (click)="openForgotPasswordPage()">
+    I forgot my password
+  </button>
 
 </ion-content>

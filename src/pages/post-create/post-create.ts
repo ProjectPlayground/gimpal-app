@@ -57,20 +57,28 @@ export class PostCreatePage {
   }
 
   takePicture() {
-    Camera.getPicture({
-      quality : 95,
-      destinationType : Camera.DestinationType.DATA_URL,
-      sourceType : Camera.PictureSourceType.CAMERA,
-      allowEdit : true,
-      encodingType: Camera.EncodingType.PNG,
-      targetWidth: 500,
-      targetHeight: 500,
-      saveToPhotoAlbum: true
-    }).then(imageData => {
-      this.post.picture = imageData;
-    }, error => {
-      console.log("ERROR -> " + JSON.stringify(error));
+    Camera.getPicture().then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64:
+     this.post.picture = imageData;
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+     // Handle error
     });
+    // Camera.getPicture({
+    //   quality : 95,
+    //   destinationType : Camera.DestinationType.DATA_URL,
+    //   sourceType : Camera.PictureSourceType.CAMERA,
+    //   allowEdit : true,
+    //   encodingType: Camera.EncodingType.PNG,
+    //   targetWidth: 500,
+    //   targetHeight: 500,
+    //   saveToPhotoAlbum: true
+    // }).then(imageData => {
+    //   this.post.picture = imageData;
+    // }, error => {
+    //   console.log("ERROR -> " + JSON.stringify(error));
+    // });
   }
 
 }
